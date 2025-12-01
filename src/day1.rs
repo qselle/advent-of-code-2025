@@ -40,23 +40,32 @@ fn part1(input: &[Direction]) -> usize {
     count
 }
 
+// [-100 ; -1] = -1
+// [0 ; 99] = 0
+// [100 ; 199]= 1
+// [200 ; 299]= 2
 #[aoc(day1, part2)]
 fn part2(input: &[Direction]) -> isize {
-    let mut position = 50;
+    let mut position: isize = 50;
     let mut count = 0;
 
     for d in input {
         match d {
             Direction::Left { sub } => {
+                let start_bucket = (position - 1).div_euclid(100);
                 position -= sub;
+                let end_bucket = (position - 1).div_euclid(100);
+
+                count += (start_bucket - end_bucket).abs();
             }
             Direction::Right { add } => {
+                let start_bucket = position.div_euclid(100);
                 position += add;
+                let end_bucket = position.div_euclid(100);
+
+                count += (end_bucket - start_bucket).abs();
             }
         }
-        count += position.div_euclid(100).abs();
-        position = position.rem_euclid(100);
-
     }
     count
 }
@@ -84,5 +93,15 @@ L82";
     #[test]
     fn part2_example() {
         assert_eq!(part2(&parse(INPUT)), 6);
+    }
+
+    const INPUT_BIS: &str = "L50
+L100
+R200
+";
+
+    #[test]
+    fn part2_example_bis() {
+        assert_eq!(part2(&parse(INPUT_BIS)), 4);
     }
 }
