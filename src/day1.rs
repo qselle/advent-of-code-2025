@@ -1,21 +1,28 @@
 use aoc_runner_derive::{aoc, aoc_generator};
 
 #[derive(Debug)]
-pub enum Direction{
-    Left{sub: isize},
-    Right{add: isize},
+pub enum Direction {
+    Left { sub: isize },
+    Right { add: isize },
 }
 
 #[aoc_generator(day1)]
-fn parse(input: &str) -> Vec<Direction>  {
-    input.lines().map(|l| {
-        let (direction, steps) = l.split_at(1);
-        if direction == "L" {
-            Direction::Left {sub: steps.parse().unwrap()}
-        } else {
-            Direction::Right {add: steps.parse().unwrap()}
-        }
-    }).collect()
+fn parse(input: &str) -> Vec<Direction> {
+    input
+        .lines()
+        .map(|l| {
+            let (direction, steps) = l.split_at(1);
+            if direction == "L" {
+                Direction::Left {
+                    sub: steps.parse().unwrap(),
+                }
+            } else {
+                Direction::Right {
+                    add: steps.parse().unwrap(),
+                }
+            }
+        })
+        .collect()
 }
 
 #[aoc(day1, part1)]
@@ -34,7 +41,7 @@ fn part1(input: &[Direction]) -> usize {
         }
         position = position.rem_euclid(100);
         if position == 0 {
-            count+= 1;
+            count += 1;
         }
     }
     count
@@ -115,10 +122,7 @@ R200
         // 2. Right 50 -> We land on 100 (0). This SHOULD count (+1).
         // 3. Left 1   -> We move to 99 (99). This SHOULD NOT count (+0).
 
-        let input = vec![
-            Direction::Right { add: 50 },
-            Direction::Left { sub: 1 },
-        ];
+        let input = vec![Direction::Right { add: 50 }, Direction::Left { sub: 1 }];
 
         assert_eq!(part2(&input), 1);
     }
@@ -129,10 +133,7 @@ R200
         // 2. Right 51 -> We land on 101 (1). This SHOULD count (+1).
         // 3. Left 1   -> We land on 100 (0). This SHOULD count (+1).
 
-        let input = vec![
-            Direction::Right { add: 51 },
-            Direction::Left { sub: 1 },
-        ];
+        let input = vec![Direction::Right { add: 51 }, Direction::Left { sub: 1 }];
 
         assert_eq!(part2(&input), 2);
     }
