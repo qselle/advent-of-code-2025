@@ -1,27 +1,27 @@
-[![Rust](https://github.com/qselle/advent-of-code-2024/actions/workflows/rust.yml/badge.svg)](https://github.com/qselle/advent-of-code-2024/actions/workflows/rust.yml) [![wakatime](https://wakatime.com/badge/github/qselle/advent-of-code-2024.svg)](https://wakatime.com/badge/github/qselle/advent-of-code-2024)
-# Advent of code 2024 🎄🎅
+[![Rust](https://github.com/qselle/advent-of-code-2025/actions/workflows/rust.yml/badge.svg)](https://github.com/qselle/advent-of-code-2024/actions/workflows/rust.yml) [![wakatime](https://wakatime.com/badge/github/qselle/advent-of-code-2025.svg)](https://wakatime.com/badge/github/qselle/advent-of-code-2024)
+# Advent of code 2025 🎄🎅
 
-This time in Rust to learn the language! Using https://github.com/gobanos/cargo-aoc 🦀.
+1 year without coding Rust... Using https://github.com/gobanos/cargo-aoc 🦀.
 
-Enter the competition: https://adventofcode.com/2024
+Join the adventure: https://adventofcode.com/2025
 
 ## Build with `cargo-aoc`
 
 Install [`cargo-aoc`](https://crates.io/crates/cargo-aoc) crate:
 
 ```console
-advent-of-code-2024 $> cargo install cargo-aoc
+advent-of-code-2025 $> cargo install cargo-aoc
 ```
 
 Run:
 
 ```console
-advent-of-code-2024 $> cargo aoc                                                                                 2 ↵
+advent-of-code-2025 $> cargo aoc                                                                                 2 ↵
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
-   Compiling aoc-autobuild v0.3.0 (/Users/quentin/Work/advent-of-code-2024/target/aoc/aoc-autobuild)
+   Compiling aoc-autobuild v0.3.0 (/Users/quentin/Work/advent-of-code-2025/target/aoc/aoc-autobuild)
     Finished `release` profile [optimized] target(s) in 0.12s
      Running `target/release/aoc-autobuild`
-AOC 2024
+AOC 2025
 Day 1 - Part 1 : 1651298
 	generator: 135.833µs,
 	runner: 542ns
@@ -34,7 +34,7 @@ Day 1 - Part 2 : 21306195
 ## Test
 
 ```console
-advent-of-code-2024 $> cargo test
+advent-of-code-2025 $> cargo test
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
      Running unittests src/lib.rs (target/debug/deps/advent_of_code_2024-027d060ec3f37a3f)
 
