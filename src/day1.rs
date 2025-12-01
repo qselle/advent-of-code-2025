@@ -40,10 +40,11 @@ fn part1(input: &[Direction]) -> usize {
     count
 }
 
+// ...
 // [-100 ; -1] = -1
 // [0 ; 99] = 0
 // [100 ; 199]= 1
-// [200 ; 299]= 2
+// ...
 #[aoc(day1, part2)]
 fn part2(input: &[Direction]) -> isize {
     let mut position: isize = 50;
@@ -52,6 +53,7 @@ fn part2(input: &[Direction]) -> isize {
     for d in input {
         match d {
             Direction::Left { sub } => {
+                // shift -1 to count arriving at 0, but ignore leaving 0.
                 let start_bucket = (position - 1).div_euclid(100);
                 position -= sub;
                 let end_bucket = (position - 1).div_euclid(100);
@@ -95,13 +97,43 @@ L82";
         assert_eq!(part2(&parse(INPUT)), 6);
     }
 
-    const INPUT_BIS: &str = "L50
+    #[test]
+    fn part2_example_bis() {
+        // L50:  50 -> 0    (Hit 0)     -> Count 1
+        // L100: 0 -> -100  (Hit 0)     -> Count 2
+        // R200: -100 -> 100 (Hit 0, 0) -> Count 4
+        const INPUT_BIS: &str = "L50
 L100
 R200
 ";
+        assert_eq!(part2(&parse(INPUT_BIS)), 4);
+    }
 
     #[test]
-    fn part2_example_bis() {
-        assert_eq!(part2(&parse(INPUT_BIS)), 4);
+    fn test_leaving_zero_does_not_count() {
+        // 1. Start at 50.
+        // 2. Right 50 -> We land on 100 (0). This SHOULD count (+1).
+        // 3. Left 1   -> We move to 99 (99). This SHOULD NOT count (+0).
+
+        let input = vec![
+            Direction::Right { add: 50 },
+            Direction::Left { sub: 1 },
+        ];
+
+        assert_eq!(part2(&input), 1);
+    }
+
+    #[test]
+    fn test_arriving_at_zero_from_left_counts() {
+        // 1. Start at 50.
+        // 2. Right 51 -> We land on 101 (1). This SHOULD count (+1).
+        // 3. Left 1   -> We land on 100 (0). This SHOULD count (+1).
+
+        let input = vec![
+            Direction::Right { add: 51 },
+            Direction::Left { sub: 1 },
+        ];
+
+        assert_eq!(part2(&input), 2);
     }
 }
